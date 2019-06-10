@@ -8,26 +8,49 @@
 
     <h1
             data-date-diff="1981-07-24 14:46:30"
+            data-date-monitory="monitory"
     >00:00</h1>
 
     <h1
             data-date-diff="2001-07-20 09:30:00"
             data-date-glue="m"
+            data-date-monitory="monitory"
     >00:00</h1>
 
     <h1
-            data-date-diff="2019-06-06 13:30:12"
+            data-date-diff="2019-06-06 14:39:00"
             data-date-glue="m"
             data-date-minus="-"
+            data-date-monitory="monitory"
     >00:00</h1>
 
     <h1
-            data-date-diff="2019-06-06 13:37:12"
+            data-date-diff="2019-06-06 14:20:00"
+            data-date-glue="m"
+            data-date-minus="-"
+            data-date-monitory="monitory"
+    >00:00</h1>
+
+    <h1
+            data-date-diff="2019-06-06 14:25:00"
+            data-date-glue="m"
+            data-date-minus="-"
+            data-date-monitory="monitory"
+    >00:00</h1>
+
+    <h1
+            data-date-diff="2019-06-06 15:08:00"
             data-date-glue="m"
             data-date-zero="stop"
             data-date-minus="-"
+            data-date-monitory="monitory"
     >00:00</h1>
 
     <script src="./diffDate.js"></script>
+    <script>
+        function monitory(payload) {
+            console.log(payload.target, payload.detail);
+        }
+    </script>
 </body>
 </html>

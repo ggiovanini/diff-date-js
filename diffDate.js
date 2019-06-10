@@ -60,11 +60,16 @@ function DiffDate(glue = ':') {
         const today = new Date();
         const glue = elem.dataset.dateGlue || separator;
         const minus = elem.dataset.dateMinus || negative;
+        const monitory = elem.dataset.dateMonitory || null;
         const stop = elem.dataset.dateZero && elem.dataset.dateZero === 'stop';
 
         const difference = Math.round(
             (pastDate.getTime() - today.getTime()) / 1000
         );
+
+        if ((difference <= 0 && stop) || Number.isInteger(difference / 30)) {
+            self.action(elem, difference, monitory);
+        }
 
         if (difference <= 0 && stop) {
             elem.innerHTML = `0${glue}00`;
@@ -83,6 +88,14 @@ function DiffDate(glue = ':') {
         elem.innerHTML = self.daysBetween(today, pastDate, glue, minus, stop);
         if (stop && (difference === -0 || difference === 0)) {
             self.stop(elem);
+        }
+    };
+
+    this.action = function(elem, difference, monitory = null){
+        elem.event = new CustomEvent('inform', { detail: difference });
+        elem.dispatchEvent(elem.event);
+        if (typeof window[monitory] === 'function') {
+            window[monitory]({ detail: difference, target: elem });
         }
     };
 
